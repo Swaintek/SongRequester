@@ -12,47 +12,82 @@ import CloudKit
 
 class RequestsTableViewController: UITableViewController {
     
-    var songs = [CKRecord]()
+    var requests = [CKRecord]()
+    
+    var refresh: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh = UIRefreshControl()
+        refresh.attributedTitle = NSAttributedString(string: "Pull to load requests")
+        refresh.addTarget(self, action: #selector(RequestsTableViewController.loadData), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refresh)
+        loadData()
     }
     
     func loadData () {
-        songs = [CKRecord]()
+        print("Inside loadData")
+        requests = [CKRecord]()
         
         let publicData = CKContainer.defaultContainer().publicCloudDatabase
         
-        let query = CKQuery(recordType: "Song", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        let query = CKQuery(recordType: "Request", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
         publicData.performQuery(query, inZoneWithID: nil) { (results:[CKRecord]?, error:NSError?) -> Void in
-            if let songs = results {
-                self.songs = songs
+            if let requests = results {
+                self.requests = requests
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                    self.refresh.endRefreshing()
+                })
+                print("inside request builder")
                 
             }
+        }
         
     }
+
     
     @IBAction func sendRequest(sender: AnyObject) {
         
-        let alert = UIAlertController(title: "New Request", message: "Enter a song", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "New Request", message: "Enter a request", preferredStyle: .Alert)
+        
         alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
             textField.placeholder = "Please enter a song name"
         }
+        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
+            textField.placeholder = "Please enter an artist name"
+        }
+        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
+            textField.placeholder = "How much would you like to tip?"
+        }
+        
+        
         alert.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (action: UIAlertAction) -> Void in
             
-            let textField = alert.textFields!.first!
+            let songField = alert.textFields![0]
+            let artistField = alert.textFields![1]
+            let tipField = alert.textFields![2]
             
-            if textField.text != "" {
-                let newSong = CKRecord(recordType: "Song")
-                newSong["content"] = textField.text
+            if songField.text != "" && artistField != "" && tipField != "" {
+                let newRequest = CKRecord(recordType: "Request")
+                newRequest["song"] = songField.text
+                newRequest["artist"] = artistField.text
+                newRequest["tip"] = tipField.text
                 
                 let publicData = CKContainer.defaultContainer().publicCloudDatabase
-                publicData.saveRecord(newSong, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+                publicData.saveRecord(newRequest, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
                     if error == nil {
-                        
-                        print("Song saved")
-                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tableView.beginUpdates()
+                            self.requests.insert(newRequest, atIndex: self.requests.count)
+                            let indexPathOfLastRow = NSIndexPath(forRow: self.requests.count - 1, inSection: 0)
+                            self.tableView.insertRowsAtIndexPaths([indexPathOfLastRow], withRowAnimation: .Top)
+                            self.tableView.endUpdates()
+                        })
+                    } else {
+                        print(error)
                     }
                 })
             }
@@ -73,24 +108,47 @@ class RequestsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+
+        return requests.count
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-        // Configure the cell...
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        print(requests.count)
+
+        if requests.count == 0 {
+            return cell
+        }
+        
+        let request = requests[indexPath.row]
+        
+        print(request)
+        
+        if let requestSong = request["song"] as? String {
+            let requestArtist = request["artist"] as! String
+            let requestTip = request["tip"] as! String
+            let dateComponentsFormatter = NSDateComponentsFormatter()
+            dateComponentsFormatter.allowedUnits = [.Minute]
+            let timeStamp = NSDate()
+            let creationDate = (request.creationDate!)
+            let diff = timeStamp.timeIntervalSinceDate(creationDate)
+            let diffString = dateComponentsFormatter.stringFromTimeInterval(diff)
+            let elapsedString = "This request is \(diffString!) minutes old"
+            let fullRequest = "\(requestSong) by \(requestArtist) for $\(requestTip)"
+            
+            cell.textLabel?.text = fullRequest
+            cell.detailTextLabel?.text = elapsedString
+        }
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
