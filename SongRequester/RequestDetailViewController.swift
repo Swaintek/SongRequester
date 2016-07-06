@@ -13,11 +13,95 @@ class RequestDetailViewController: UIViewController {
     
     var request: CKRecord!
 
-    @IBOutlet weak var requestNameLabel: UILabel!
+    @IBOutlet weak var songLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var tipLabel: UILabel!
+    
+    @IBAction func fiveDollarTip(sender: AnyObject) {
+        
+        request["tip"] = (request["tip"]! as! Double) + 5.0
+        
+        let publicData = CKContainer.defaultContainer().publicCloudDatabase
+        publicData.saveRecord(request, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+            if error == nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({ 
+                    self.tipLabel.text = "Tip Amount: $ \(record!["tip"]!)"
+                })
+            } else {
+                print(error)
+            }
+        })
+    }
+    
+    @IBAction func tenDollarTip(sender: AnyObject) {
+        
+        request["tip"] = (request["tip"]! as! Double) + 10.0
+        
+        let publicData = CKContainer.defaultContainer().publicCloudDatabase
+        publicData.saveRecord(request, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+            if error == nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.tipLabel.text = "Tip Amount: $ \(record!["tip"]!)"
+                })
+            } else {
+                print(error)
+            }
+        })
+    }
+    
+    @IBAction func twentyDollarTip(sender: AnyObject) {
+        
+        request["tip"] = (request["tip"]! as! Double) + 20.0
+        
+        let publicData = CKContainer.defaultContainer().publicCloudDatabase
+        publicData.saveRecord(request, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+            if error == nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.tipLabel.text = "Tip Amount: $ \(record!["tip"]!)"
+                })
+            } else {
+                print(error)
+            }
+        })
+    }
+    
+    @IBAction func fiftyDollarTip(sender: AnyObject) {
+        
+        request["tip"] = (request["tip"]! as! Double) + 50.0
+        
+        let publicData = CKContainer.defaultContainer().publicCloudDatabase
+        publicData.saveRecord(request, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+            if error == nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.tipLabel.text = "Tip Amount: $ \(record!["tip"]!)"
+                })
+            } else {
+                print(error)
+            }
+        })
+    }
+    
+    @IBAction func hundredDollarTip(sender: AnyObject) {
+        
+        request["tip"] = (request["tip"]! as! Double) + 100.0
+        
+        let publicData = CKContainer.defaultContainer().publicCloudDatabase
+        publicData.saveRecord(request, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
+            if error == nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.tipLabel.text = "Tip Amount: $ \(record!["tip"]!)"
+                })
+            } else {
+                print(error)
+            }
+        })
+    }
     
     
     override func viewWillAppear(animated: Bool) {
-        requestNameLabel.text = request["song"] as? String
+        songLabel.text = "Song Name: \(request["song"] as! String)"
+        artistLabel.text = "Artist: \(request["artist"] as! String)"
+        tipLabel.text = "Tip Amount: $ \(request["tip"]!)"
     }
     
     override func viewDidLoad() {

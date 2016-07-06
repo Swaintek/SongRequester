@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--SongRequester-->
@@ -75,29 +76,128 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Details for song request" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE8-fh-qOD">
-                                <rect key="frame" x="209" y="35" width="183" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZK-uj-Xuo">
-                                <rect key="frame" x="256" y="91" width="89" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Myj-L0-BI6">
+                                <rect key="frame" x="319" y="97" width="560" height="278"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Song" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCP-gR-rqR">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="25"/>
+                                        <color key="backgroundColor" red="0.79215686269999996" green="0.49019607840000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
+                                        <color key="textColor" red="0.0" green="0.96920649560000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CD-RV-Tfz">
+                                        <rect key="frame" x="0.0" y="55" width="560" height="25"/>
+                                        <color key="backgroundColor" red="0.52156862749999999" green="0.85098039219999999" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="24"/>
+                                        <color key="textColor" red="0.79215686269999996" green="0.49019607840000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py1-uQ-J75">
+                                        <rect key="frame" x="0.0" y="110" width="560" height="25"/>
+                                        <color key="backgroundColor" red="0.37647058823529411" green="0.47450980392156861" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
+                                        <color key="textColor" red="0.95686274509803926" green="0.97254901960784312" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f8c-5O-Kox">
+                                        <rect key="frame" x="0.0" y="165" width="560" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Play this song sooner!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dj-Oz-bmH">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="25"/>
+                                                <color key="backgroundColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
+                                                <color key="textColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Add money below:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5x-S0-PWa">
+                                                <rect key="frame" x="0.0" y="25" width="560" height="25"/>
+                                                <color key="backgroundColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
+                                                <color key="textColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="L6K-NO-Vwm">
+                                        <rect key="frame" x="0.0" y="245" width="560" height="33"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSE-xP-UxH">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="33"/>
+                                                <color key="backgroundColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="12"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="+$5">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fiveDollarTip:" destination="xCe-xW-Uwd" eventType="touchUpInside" id="Sal-f2-tox"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zn4-GI-oym">
+                                                <rect key="frame" x="120" y="0.0" width="50" height="33"/>
+                                                <color key="backgroundColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="12"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="+$10">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="tenDollarTip:" destination="xCe-xW-Uwd" eventType="touchUpInside" id="6wg-CW-zrE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUg-mb-DoH">
+                                                <rect key="frame" x="248" y="0.0" width="50" height="33"/>
+                                                <color key="backgroundColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="12"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="+$20">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="twentyDollarTip:" destination="xCe-xW-Uwd" eventType="touchUpInside" id="XDz-T0-PJB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apT-BP-yTh">
+                                                <rect key="frame" x="375" y="0.0" width="50" height="33"/>
+                                                <color key="backgroundColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="12"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" title="+$50">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fiftyDollarTip:" destination="xCe-xW-Uwd" eventType="touchUpInside" id="2hP-RP-dgf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTH-v1-nPV">
+                                                <rect key="frame" x="503" y="0.0" width="57" height="33"/>
+                                                <color key="backgroundColor" red="0.37647058820000001" green="0.47450980390000003" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="12"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                                <state key="normal" title="+$100">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.97254901959999995" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="hundredDollarTip:" destination="xCe-xW-Uwd" eventType="touchUpInside" id="Fqj-2j-j9I"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.84313725490000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="WZK-uj-Xuo" firstAttribute="centerX" secondItem="z7E-ln-HGv" secondAttribute="centerX" id="0VA-IQ-G1g"/>
-                            <constraint firstItem="HE8-fh-qOD" firstAttribute="centerX" secondItem="z7E-ln-HGv" secondAttribute="centerX" id="I78-22-jH3"/>
-                            <constraint firstItem="HE8-fh-qOD" firstAttribute="top" secondItem="Ikz-nI-vpJ" secondAttribute="bottom" constant="15" id="lie-pu-mwr"/>
-                            <constraint firstItem="WZK-uj-Xuo" firstAttribute="top" secondItem="HE8-fh-qOD" secondAttribute="bottom" constant="35" id="xbY-P1-BIP"/>
+                            <constraint firstItem="Myj-L0-BI6" firstAttribute="leading" secondItem="z7E-ln-HGv" secondAttribute="leadingMargin" id="c32-aP-0Bi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Myj-L0-BI6" secondAttribute="trailing" id="iA7-9U-ybv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="requestNameLabel" destination="WZK-uj-Xuo" id="zSM-2o-B3l"/>
+                        <outlet property="artistLabel" destination="9CD-RV-Tfz" id="UgO-Jk-xDm"/>
+                        <outlet property="songLabel" destination="dCP-gR-rqR" id="npQ-ol-20k"/>
+                        <outlet property="tipLabel" destination="Py1-uQ-J75" id="AKe-C5-XUg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjf-cn-yCk" userLabel="First Responder" sceneMemberID="firstResponder"/>

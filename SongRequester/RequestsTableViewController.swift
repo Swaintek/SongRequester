@@ -25,6 +25,11 @@ class RequestsTableViewController: UITableViewController {
         loadData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
     func loadData () {
         print("Inside loadData")
         requests = [CKRecord]()
