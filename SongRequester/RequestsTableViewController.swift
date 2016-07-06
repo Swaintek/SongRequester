@@ -55,12 +55,15 @@ class RequestsTableViewController: UITableViewController {
         
         alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
             textField.placeholder = "Please enter a song name"
+            textField.autocapitalizationType = .Words
         }
         alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
             textField.placeholder = "Please enter an artist name"
+            textField.autocapitalizationType = .Words
         }
         alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
             textField.placeholder = "How much would you like to tip?"
+            textField.keyboardType = .DecimalPad
         }
         
         
