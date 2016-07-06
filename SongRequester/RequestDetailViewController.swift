@@ -7,9 +7,19 @@
 //
 
 import UIKit
+import CloudKit
 
 class RequestDetailViewController: UIViewController {
+    
+    var request: CKRecord!
 
+    @IBOutlet weak var requestNameLabel: UILabel!
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        requestNameLabel.text = request["song"] as? String
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

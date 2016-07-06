@@ -15,11 +15,11 @@
                         <color key="backgroundColor" red="0.63529411764705879" green="0.63137254901960782" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.34901960784313724" green="0.73725490196078436" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="1vy-N2-m2s" detailTextLabel="ni6-ZV-S7k" rowHeight="101" style="IBUITableViewCellStyleSubtitle" id="eia-kv-VOO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="1vy-N2-m2s" detailTextLabel="ni6-ZV-S7k" rowHeight="101" style="IBUITableViewCellStyleSubtitle" id="eia-kv-VOO">
                                 <rect key="frame" x="0.0" y="92" width="600" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eia-kv-VOO" id="drf-eY-ptZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1vy-N2-m2s">
@@ -40,6 +40,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.92941176470588238" green="0.84313725490196079" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="xCe-xW-Uwd" kind="show" identifier="ShowRequestSegue" id="9ya-HV-b33"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -59,6 +62,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B0o-Kz-W9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1106" y="417"/>
+        </scene>
+        <!--Request Detail View Controller-->
+        <scene sceneID="zKe-56-S2f">
+            <objects>
+                <viewController id="xCe-xW-Uwd" customClass="RequestDetailViewController" customModule="SongRequester" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ikz-nI-vpJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="dl7-XZ-oUm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z7E-ln-HGv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Details for song request" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE8-fh-qOD">
+                                <rect key="frame" x="209" y="35" width="183" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZK-uj-Xuo">
+                                <rect key="frame" x="256" y="91" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WZK-uj-Xuo" firstAttribute="centerX" secondItem="z7E-ln-HGv" secondAttribute="centerX" id="0VA-IQ-G1g"/>
+                            <constraint firstItem="HE8-fh-qOD" firstAttribute="centerX" secondItem="z7E-ln-HGv" secondAttribute="centerX" id="I78-22-jH3"/>
+                            <constraint firstItem="HE8-fh-qOD" firstAttribute="top" secondItem="Ikz-nI-vpJ" secondAttribute="bottom" constant="15" id="lie-pu-mwr"/>
+                            <constraint firstItem="WZK-uj-Xuo" firstAttribute="top" secondItem="HE8-fh-qOD" secondAttribute="bottom" constant="35" id="xbY-P1-BIP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="requestNameLabel" destination="WZK-uj-Xuo" id="zSM-2o-B3l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wjf-cn-yCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dAH-qr-i14">

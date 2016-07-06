@@ -152,6 +152,17 @@ class RequestsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowRequestSegue" {
+            
+            let destination = segue.destinationViewController as? RequestDetailViewController
+            let requestIndex = tableView.indexPathForSelectedRow?.row
+            destination!.request = self.requests[requestIndex!]
+        }
+    }
 
 
     /*
