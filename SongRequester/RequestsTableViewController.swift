@@ -36,7 +36,7 @@ class RequestsTableViewController: UITableViewController {
         
         publicData.performQuery(query, inZoneWithID: nil) { (results:[CKRecord]?, error:NSError?) -> Void in
             if let requests = results {
-                self.requests = requests
+                self.requests = requests.sort({$0["tip"] as! Double > $1["tip"] as! Double})
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                     self.refresh.endRefreshing()
@@ -77,7 +77,7 @@ class RequestsTableViewController: UITableViewController {
                 let newRequest = CKRecord(recordType: "Request")
                 newRequest["song"] = songField.text
                 newRequest["artist"] = artistField.text
-                newRequest["tip"] = tipField.text
+                newRequest["tip"] = Double(tipField.text!)
                 
                 let publicData = CKContainer.defaultContainer().publicCloudDatabase
                 publicData.saveRecord(newRequest, completionHandler: { (record: CKRecord?, error: NSError?) -> Void in
@@ -135,7 +135,8 @@ class RequestsTableViewController: UITableViewController {
         
         if let requestSong = request["song"] as? String {
             let requestArtist = request["artist"] as! String
-            let requestTip = request["tip"] as! String
+            let requestTip = request["tip"] as! Double
+            let tipString = String(requestTip)
             let dateComponentsFormatter = NSDateComponentsFormatter()
             dateComponentsFormatter.allowedUnits = [.Minute]
             let timeStamp = NSDate()
@@ -143,7 +144,7 @@ class RequestsTableViewController: UITableViewController {
             let diff = timeStamp.timeIntervalSinceDate(creationDate)
             let diffString = dateComponentsFormatter.stringFromTimeInterval(diff)
             let elapsedString = "This request is \(diffString!) minutes old"
-            let fullRequest = "\(requestSong) by \(requestArtist) for $\(requestTip)"
+            let fullRequest = "\(requestSong) by \(requestArtist) for $\(tipString)"
             
             cell.textLabel?.text = fullRequest
             cell.detailTextLabel?.text = elapsedString
