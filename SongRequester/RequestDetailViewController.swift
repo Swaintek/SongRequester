@@ -99,6 +99,17 @@ class RequestDetailViewController: UIViewController {
     
     
     override func viewWillAppear(animated: Bool) {
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        let imageViewBackground = UIImageView(frame: CGRectMake(0,0,width,height))
+        imageViewBackground.image = UIImage(named: "kwahu")
+        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = imageViewBackground.bounds
+        imageViewBackground.addSubview(blurView)
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
         songLabel.text = "Song Name: \(request["song"] as! String)"
         artistLabel.text = "Artist: \(request["artist"] as! String)"
         tipLabel.text = "Tip Amount: $ \(request["tip"]!)"

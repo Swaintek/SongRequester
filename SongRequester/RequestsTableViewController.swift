@@ -12,9 +12,15 @@ import CloudKit
 
 class RequestsTableViewController: UITableViewController {
     
+
+    
     var requests = [CKRecord]()
     
     var refresh: UIRefreshControl!
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.25)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,15 @@ class RequestsTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let backgroundImage = UIImage(named: "kwahu")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        imageView.contentMode = .ScaleAspectFill
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = imageView.bounds
+        imageView.addSubview(blurView)
         loadData()
     }
     
